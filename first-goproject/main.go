@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"example.com/mathlib"
+)
 
 // single output return
 
@@ -17,10 +21,17 @@ func getNumbers(num1 int, num2 int) (int, int) {
 
 }
 
-//string
+// string
 func sayHello(name string) {
 	fmt.Println("Hello everyone,", name)
 }
+
+/*
+custom package create
+1.go mod init exmaple.com
+2.import example.com/mathlib==> example.com/external package name(custom package)
+2.Custom package er func main a run korte hole oi package er function er nam capital letter hobe
+*/
 func main() {
 	// a := 10
 	// var a int = 10
@@ -38,6 +49,8 @@ func main() {
 	// fmt.Println("Enter your name -")
 	// fmt.Scanln(&name)
 	// fmt.Println("----", name)
-	sub(4, 7)
+	// sub(4, 7)
+	// package name diye bairer func access
+	mathlib.Sub(4, 10)
 
 }
