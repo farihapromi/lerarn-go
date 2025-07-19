@@ -32,6 +32,12 @@ func main() {
 	// p, q := getNumbers(a, b)
 	// fmt.Println((p))
 	// fmt.Println((q))
-	sayHello("Promi")
+	// sayHello("Promi")
+	// get user name as input
+	// var name string
+	// fmt.Println("Enter your name -")
+	// fmt.Scanln(&name)
+	// fmt.Println("----", name)
+	sub(4, 7)
 
 }
