@@ -25,6 +25,16 @@ func call() {
 	incr2()
 
 }
+
+/*
+go run main.go=>compile it=>main=>./main
+go build main.go =>compile it=>main
+
+*/
+func main() {
+	call()
+
+}
 func init() {
 	fmt.Println("=======BANK==========")
 }
