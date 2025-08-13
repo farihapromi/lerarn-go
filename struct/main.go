@@ -7,7 +7,12 @@ type User struct {
 	Age  int
 }
 
-func printUserDetails(usr User) {
+// func printUserDetails(usr User) {
+// 	fmt.Println("Name", usr.name)
+// 	fmt.Println("Age", usr.Age)
+// }
+// reciever function
+func (usr User) printDetails() {
 	fmt.Println("Name", usr.name)
 	fmt.Println("Age", usr.Age)
 }
@@ -18,12 +23,14 @@ func main() {
 		name: "promi",
 		Age:  23,
 	}
-	printUserDetails(user1)
+	user1.printDetails()
+	// printUserDetails(user1)
 	// fmt.Println("Name", user1.name)
 	// fmt.Println("Age", user1.Age)
 	user2 := User{
 		name: "Seher",
 		Age:  29,
 	}
-	printUserDetails((user2))
+	// printUserDetails((user2))
+	user2.printDetails() //reciver function
 }
