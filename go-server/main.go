@@ -9,10 +9,16 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hello World")
 }
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "i am promi", "I am a SW Engineer")
+	fmt.Fprintln(w, "i am promi, I am a SW Engineer")
 }
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/hello", helloHandler)
+	mux.HandleFunc("/about", aboutHandler)
+	fmt.Println("Server running on :3000")
+	err := http.ListenAndServe(":3000", mux)
+	if err != nil {
+		fmt.Println("Error starting the server", err)
+	}
 
 }
