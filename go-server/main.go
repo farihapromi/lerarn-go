@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -12,7 +13,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "i am promi, I am a SW Engineer")
 }
 
-type Prodcut struct {
+type Product struct {
 	ID          int
 	Title       string
 	Description string
@@ -20,11 +21,16 @@ type Prodcut struct {
 	Imgurl      string
 }
 
+var productList []Product
+
 func getProducts(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Plz give me GET request", 400)
+		return
 
 	}
+	encoder := json.NewEncoder(w)
+	encoder.Encode(productList)
 
 }
 func main() {
@@ -80,4 +86,21 @@ func init() {
 		Price:       180,
 		Imgurl:      "https://upload.wikimedia.org/wikipedia/commons/0/0b/Table_grapes_on_white.jpg",
 	}
+	prd6 := Product{
+		ID:          6,
+		Title:       "Pineapple",
+		Description: "Fresh pineapple, tropical and juicy",
+		Price:       250,
+		Imgurl:      "https://upload.wikimedia.org/wikipedia/commons/c/cb/Pineapple_and_cross_section.jpg",
+	}
+	// Append all products
+	productList = append(productList, prd1)
+	productList = append(productList, prd2)
+	productList = append(productList, prd3)
+	productList = append(productList, prd4)
+	productList = append(productList, prd5)
+	productList = append(productList, prd6)
+	// productList = append(productList, prd1, prd2, prd3, prd4, prd5, prd6)
+
+	fmt.Println(productList)
 }
