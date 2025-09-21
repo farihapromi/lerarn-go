@@ -11,6 +11,15 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "i am promi, I am a SW Engineer")
 }
+
+type Prodcut struct {
+	ID          int
+	Title       string
+	Description string
+	Price       float64
+	Imgurl      string
+}
+
 func getProducts(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Plz give me GET request", 400)
