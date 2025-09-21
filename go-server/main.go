@@ -11,10 +11,19 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "i am promi, I am a SW Engineer")
 }
+func getProducts(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		http.Error(w, "Plz give me GET request", 400)
+
+	}
+
+}
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/hello", helloHandler)
-	mux.HandleFunc("/about", aboutHandler)
+	mux := http.NewServeMux() //router
+
+	mux.HandleFunc("/hello", helloHandler) //route
+	mux.HandleFunc("/about", aboutHandler) //route
+	mux.HandleFunc("/products", getProducts)
 	fmt.Println("Server running on :3000")
 	err := http.ListenAndServe(":3000", mux)
 	if err != nil {
