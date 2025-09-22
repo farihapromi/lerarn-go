@@ -26,6 +26,9 @@ type Product struct {
 var productList []Product
 
 func getProducts(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") //ALLOW  everyone.if we write 3000 isntead of * it wil suport 3000 port frontend
+	w.Header().Set("Content-Type", "application/json")
+
 	if r.Method != "GET" {
 		http.Error(w, "Plz give me GET request", 400)
 		return
@@ -35,14 +38,27 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 	encoder.Encode(productList)
 
 }
+func createProducts(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") //ALLOW  everyone.if we write 3000 isntead of * it wil suport 3000 port frontend
+	w.Header().Set("Content-Type", "application/json")
+
+	if r.Method != "POST" {
+		http.Error(w, "Plz give me GET request", 400)
+		return
+
+	}
+	encoder := json.NewEncoder(w)
+	encoder.Encode(productList)
+}
+
 func main() {
 	mux := http.NewServeMux() //router
 
 	mux.HandleFunc("/hello", helloHandler) //route
 	mux.HandleFunc("/about", aboutHandler) //route
 	mux.HandleFunc("/products", getProducts)
-	fmt.Println("Server running on :3000")
-	err := http.ListenAndServe(":3000", mux)
+	fmt.Println("Server running on :8080")
+	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		fmt.Println("Error starting the server", err)
 	}
