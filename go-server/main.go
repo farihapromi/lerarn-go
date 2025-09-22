@@ -14,11 +14,13 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Product struct {
-	ID          int
-	Title       string
-	Description string
-	Price       float64
-	Imgurl      string
+	/*Struct tags are special metadata you can attach to struct fields.
+	They are written in backticks (`...`) after the field definition.*/
+	ID          int     `json:"id"`
+	Title       string  `json:"title"`
+	Description string  `json:"description"`
+	Price       float64 `json:"price"`
+	Imgurl      string  `json:"imgUrl"`
 }
 
 var productList []Product
@@ -102,5 +104,5 @@ func init() {
 	productList = append(productList, prd6)
 	// productList = append(productList, prd1, prd2, prd3, prd4, prd5, prd6)
 
-	fmt.Println(productList)
+	// fmt.Println(productList)
 }
